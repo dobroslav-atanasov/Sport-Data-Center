@@ -15,10 +15,10 @@ import { AuthModule } from './features/auth/auth.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     CoreModule,
     SharedModule,
-    AuthModule
+    AuthModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
