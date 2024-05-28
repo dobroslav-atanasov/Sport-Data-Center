@@ -1,0 +1,22 @@
+.header {
+    /* position: sticky; */
+    /* position: -webkit-sticky; */
+    top: 0;
+    padding: 0.5rem;
+}
+
+.header-right {
+    color: #fff;
+    float: right;
+    padding-left: 0.5rem;
+}
+
+.header-left {
+    color: #fff;
+    float: left;
+    padding-right: 0.5rem;
+}
+
+:host ::ng-deep p-menubarsub {
+    width: 100%;
+}
