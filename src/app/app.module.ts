@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './features/auth/auth.module';
+import { ToastModule } from 'primeng/toast';
+import { HttpClientModule } from '@angular/common/http';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { AuthModule } from './features/auth/auth.module';
     CoreModule,
     SharedModule,
     AuthModule,
+    ToastModule,
+    HttpClientModule,
+    ButtonModule,
     AppRoutingModule
   ],
   providers: [],

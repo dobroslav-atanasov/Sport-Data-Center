@@ -1,1 +1,61 @@
-<p>register works!</p>
+<div class="flex justify-content-center flex-wrap mt-8">
+    <form [formGroup]="registerForm" (ngSubmit)="signUpHandler()">
+        <p-card header="Sign up" [style]="{width: '360px'}">
+            <div class="field">
+                <label for="username">Username</label>
+                <input id="username" type="text" class="w-full" name="username" placeholder="Username"
+                    formControlName="username" pInputText>
+                <small *ngIf="username.invalid && (username.dirty || username.touched)" class="block p-error">
+                    <p-message *ngIf="username.errors?.['required']" severity="danger" text="Username is required."></p-message>
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="email">Email</label>
+                <input id="email" type="text" class="w-full" name="email" placeholder="Email" formControlName="email"
+                    pInputText>
+                <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+                    <p-message *ngIf="email.errors?.['required']" severity="danger" text="Email is required."></p-message>
+                    <p-message *ngIf="email.errors?.['email']" severity="danger" text="Invalid email."></p-message>
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="email">Password</label>
+                <p-password id="password" type="password" class="w-full" name="password" placeholder="Password"
+                    styleClass="p-password" formControlName="password" [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}" [toggleMask]="true"></p-password>
+                <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+                    <p-message *ngIf="password.errors?.['required']" severity="danger" text="Password is required"></p-message>
+                    <p-message *ngIf="password.errors?.['minlength']" severity="warning" text="Password must be at least 6 symbols"></p-message>
+                    <p-message *ngIf="password.errors?.['nonAlphanumeric']" severity="warning" text="Password must contains at least one special character"></p-message>
+                    <p-message *ngIf="password.errors?.['lowerCase']" severity="warning" text="Password must contains at least one lower case letter"></p-message>
+                    <p-message *ngIf="password.errors?.['upperCase']" severity="warning" text="Password must contains at least one upper case letter"></p-message>
+                </small>
+            </div>
+
+            <div class="field">
+                <label for="confirmPassword">Confirm Password</label>
+                <p-password id="confirmPassword" type="password" class="w-full" name="confirmPassword" placeholder="Confirm Password"
+                    styleClass="p-password" formControlName="confirmPassword" [style]="{'width':'100%'}"
+                    [inputStyle]="{'width':'100%'}" [toggleMask]="false" [feedback]="false"></p-password>
+                <small *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" class="block p-error">
+                    <p-message *ngIf="confirmPassword.errors?.['required']" severity="danger" text="Confirm Password is required"></p-message>
+                </small>
+                <small *ngIf="registerForm.errors?.['passwordMatch'] && confirmPassword.valid && password.valid" class="block p-error">
+                    <p-message severity="danger" text="Passwords do not match"></p-message>
+                </small>
+            </div>
+
+            <div *ngIf="serverError" class="field">
+                <p-message severity="danger" [text]="serverError"></p-message>
+            </div>
+
+            <p-button label="Sign up" styleClass="w-full" type="submit" [disabled]="registerForm.invalid"></p-button>
+
+            <div class="mt-3">
+                Already have an account? <a routerLink="/auth/login">Sign in</a>
+            </div>
+        </p-card>
+    </form>
+</div>
