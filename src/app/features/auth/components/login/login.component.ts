@@ -35,6 +35,6 @@ export class LoginComponent implements OnInit {
   }
 
   signInHandler() {
-
+    console.log(this.username.value);
   }
 }
