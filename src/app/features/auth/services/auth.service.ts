@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { HttpClient } from '@angular/common/http';
+import { UserSignIn } from '../interfaces/user-sign-in';
+import { UserSignUp } from '../interfaces/user-sign-up';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +15,15 @@ export class AuthService {
 
   }
 
-  signUp() {
+  signUp(model: UserSignUp) {
 
   }
 
-  signIn() {
+  signIn(model: UserSignIn) {
 
   }
 
   logout() {
-    
+
   }
 }

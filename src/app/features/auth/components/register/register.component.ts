@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validator';
 import { AuthService } from '../../services/auth.service';
+import { UserSignUp } from '../../interfaces/user-sign-up';
 
 @Component({
   selector: 'sd-register',
@@ -41,6 +42,6 @@ export class RegisterComponent {
   }
 
   signUpHandler() {
-    this.authService.signUp();
+    this.authService.signUp(this.registerForm.value as UserSignUp);
   }
 }

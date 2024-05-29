@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { UserSignIn } from '../../interfaces/user-sign-in';
 
 @Component({
   selector: 'sd-login',
@@ -11,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   serverError: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
     this.serverError = '';
   }
 
@@ -35,6 +37,6 @@ export class LoginComponent implements OnInit {
   }
 
   signInHandler() {
-    console.log(this.username.value);
+    this.authService.signIn(this.loginForm.value as UserSignIn)
   }
 }
