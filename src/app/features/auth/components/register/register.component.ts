@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validator';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'sd-register',
@@ -13,7 +14,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   serverError: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
     this.serverError = '';
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -40,6 +41,6 @@ export class RegisterComponent {
   }
 
   signUpHandler() {
-    console.log(this.username);
+    this.authService.signUp();
   }
 }
