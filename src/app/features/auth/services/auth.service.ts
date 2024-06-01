@@ -26,4 +26,12 @@ export class AuthService {
   logout() {
 
   }
+
+  isLoggedIn() {
+    return true;
+  }
+
+  getAccessToken(): string | undefined {
+    throw new Error('Method not implemented.');
+  }
 }
