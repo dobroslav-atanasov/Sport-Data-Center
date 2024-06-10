@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from '../../features/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment.development';
 
 @Injectable()
 
@@ -28,7 +29,7 @@ export class HttpCoreInterceptor implements HttpInterceptor {
       }));
   }
 
-  setHeaders(req: HttpRequest<any>): HttpRequest<any> {
+  private setHeaders(req: HttpRequest<any>): HttpRequest<any> {
     req = req.clone({
       setHeaders: {
         'Content-Type': 'application/json'
@@ -47,11 +48,19 @@ export class HttpCoreInterceptor implements HttpInterceptor {
     return req;
   }
 
-  setApiUrl(req: HttpRequest<any>): HttpRequest<any> {
-    throw new Error('Method not implemented.');
+  private setApiUrl(req: HttpRequest<any>): HttpRequest<any> {
+    const apiUrl = environment.apiUrl;
+
+    if (!req.url.startsWith(apiUrl)) {
+      req = req.clone({
+        url: `${apiUrl}${req.url}`
+      });
+    }
+
+    return req;
   }
 
-  refreshToken(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  private refreshToken(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     throw new Error('Method not implemented.');
   }
 }
