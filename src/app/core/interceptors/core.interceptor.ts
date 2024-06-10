@@ -1,5 +1,11 @@
-import { HttpInterceptorFn } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpInterceptorFn } from '@angular/common/http';
+import { Provider } from '@angular/core';
+import { HttpCoreInterceptor } from './http.interceptor';
 
-export const coreInterceptor: HttpInterceptorFn = (req, next) => {
-  return next(req);
-};
+export const CoreInterceptorProviders: Provider[] = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpCoreInterceptor,
+    multi: true
+  }
+]
