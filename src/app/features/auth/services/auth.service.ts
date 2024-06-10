@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent } from '@angular/common/http';
 import { UserSignIn } from '../interfaces/user-sign-in';
 import { UserSignUp } from '../interfaces/user-sign-up';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,14 @@ export class AuthService {
   }
 
   getAccessToken(): string | undefined {
+    throw new Error('Method not implemented.');
+  }
+
+  createRefreshToken(): Observable<any> {
+    throw new Error('Method not implemented.');
+  }
+
+  saveAccessToken(accessToken: string) {
     throw new Error('Method not implemented.');
   }
 }
