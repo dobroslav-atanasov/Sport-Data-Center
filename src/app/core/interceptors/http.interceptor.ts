@@ -1,9 +1,10 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../../features/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment.development';
+import { Token } from '../../features/auth/interfaces/token';
 
 @Injectable()
 
@@ -61,6 +62,20 @@ export class HttpCoreInterceptor implements HttpInterceptor {
   }
 
   private refreshToken(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    throw new Error('Method not implemented.');
+    return this.authService
+      .createRefreshToken()
+      .pipe(switchMap((res: Token) => {
+        this.authService.saveAccessToken(res.accessToken);
+        req = this.setHeaders(req);
+        return next.handle(req);
+      }),
+        catchError((err) => {
+          if (err.status == 403) {
+            this.router.navigate(['/auth/logout']);
+          }
+
+          return throwError(() => err);
+        })
+      )
   }
 }
