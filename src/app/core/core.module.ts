@@ -8,6 +8,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
+import { CoreInterceptorProviders } from './interceptors/core.interceptor';
+
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -26,6 +28,9 @@ import { ButtonModule } from 'primeng/button';
     HeaderComponent,
     FooterComponent,
     HomeComponent
+  ],
+  providers: [
+    CoreInterceptorProviders
   ]
 })
 
