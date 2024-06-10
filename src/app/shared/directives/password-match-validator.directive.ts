@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import { AbstractControl, ValidationErrors, Validator } from '@angular/forms';
-import { passwordMatchValidator } from '../validators/validator';
+import { passwordMatchValidator } from '../validators/validators';
 
 @Directive({
   selector: '[sdPasswordMatchValidator]'

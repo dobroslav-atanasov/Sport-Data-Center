@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validator';
+import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validators';
 import { AuthService } from '../../services/auth.service';
 import { UserSignUp } from '../../interfaces/user-sign-up';
 
