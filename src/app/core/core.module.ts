@@ -27,7 +27,8 @@ import { CoreInterceptorProviders } from './interceptors/core.interceptor';
   exports: [
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    NotFoundComponent
   ],
   providers: [
     CoreInterceptorProviders
