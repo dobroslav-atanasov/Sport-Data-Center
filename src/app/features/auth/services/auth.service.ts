@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   signOut() {
-
+    this.user = undefined;
   }
 
   isLoggedIn() {
