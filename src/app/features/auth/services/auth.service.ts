@@ -8,6 +8,7 @@ import { GlobalConstants } from '../../../core/constants/global-constants';
 import { ApiRouteConstants } from '../../../core/constants/api-route-constants';
 import { Token } from '../interfaces/token';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { RefreshToken } from '../interfaces/refresh-token';
 
 @Injectable({
   providedIn: 'root'
@@ -31,14 +32,6 @@ export class AuthService {
       .pipe(
         tap((res: any) => this.saveTokens(res))
       );
-  }
-
-  saveTokens(token: Token) {
-    localStorage.setItem(GlobalConstants.ACCESS_TOKEN, token.accessToken);
-    localStorage.setItem(GlobalConstants.REFRESH_TOKEN, token.refreshToken);
-    localStorage.setItem(GlobalConstants.USERNAME, token.username);
-
-    this.user = this.setUser();
   }
 
   setUser(): User | undefined {
@@ -67,15 +60,7 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.user !== undefined && this.existTokens();
-  }
-
-  existTokens() {
-    const accessToken = localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
-    const refreshToken = localStorage.getItem(GlobalConstants.REFRESH_TOKEN);
-    const username = localStorage.getItem(GlobalConstants.USERNAME);
-
-    return accessToken && refreshToken && username;
+    return this.user !== undefined && this.tokensExist();
   }
 
   getAccessToken(): string | undefined {
@@ -83,10 +68,45 @@ export class AuthService {
   }
 
   createRefreshToken(): Observable<any> {
-    throw new Error('Method not implemented.');
+    const model = JSON.stringify(
+      {
+        refreshToken: localStorage.getItem(GlobalConstants.REFRESH_TOKEN),
+        username: this.user?.username
+      });
+      
+    return this.httpClient.post(ApiRouteConstants.TOKENS_CREATE_REFRESH_TOKEN, model);
   }
 
   saveAccessToken(accessToken: string) {
-    throw new Error('Method not implemented.');
+    localStorage.setItem(GlobalConstants.ACCESS_TOKEN, accessToken);
+  }
+
+  getUser(): User | undefined {
+    return this.user;
+  }
+
+  isTokenExpired() {
+    const accessToken = localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
+    if (!accessToken) {
+      return true;
+    }
+
+    return this.jwtService.isTokenExpired(accessToken);
+  }
+
+  private tokensExist() {
+    const accessToken = localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
+    const refreshToken = localStorage.getItem(GlobalConstants.REFRESH_TOKEN);
+    const username = localStorage.getItem(GlobalConstants.USERNAME);
+
+    return accessToken && refreshToken && username;
+  }
+
+  private saveTokens(token: Token) {
+    localStorage.setItem(GlobalConstants.ACCESS_TOKEN, token.accessToken);
+    localStorage.setItem(GlobalConstants.REFRESH_TOKEN, token.refreshToken);
+    localStorage.setItem(GlobalConstants.USERNAME, token.username);
+
+    this.user = this.setUser();
   }
 }
