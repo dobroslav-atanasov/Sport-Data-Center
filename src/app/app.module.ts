@@ -22,8 +22,8 @@ import { ButtonModule } from 'primeng/button';
     SharedModule,
     AuthModule,
     ToastModule,
-    HttpClientModule,
     ButtonModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

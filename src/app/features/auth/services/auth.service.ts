@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
-import { HttpClient, HttpEvent } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { UserSignIn } from '../interfaces/user-sign-in';
 import { UserSignUp } from '../interfaces/user-sign-up';
 import { Observable, tap } from 'rxjs';
@@ -8,7 +8,6 @@ import { GlobalConstants } from '../../../core/constants/global-constants';
 import { ApiRouteConstants } from '../../../core/constants/api-route-constants';
 import { Token } from '../interfaces/token';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RefreshToken } from '../interfaces/refresh-token';
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +21,11 @@ export class AuthService {
 
   }
 
-  signUp(model: UserSignUp) {
+  signUp(model: UserSignUp): Observable<any> {
     return this.httpClient.post(ApiRouteConstants.USERS, model);
   }
 
-  signIn(model: UserSignIn) {
+  signIn(model: UserSignIn): Observable<any> {
     return this.httpClient
       .post(ApiRouteConstants.TOKENS_CREATE, model)
       .pipe(
@@ -63,8 +62,8 @@ export class AuthService {
     return this.user !== undefined && this.tokensExist();
   }
 
-  getAccessToken(): string | undefined {
-    throw new Error('Method not implemented.');
+  getAccessToken(): string | null {
+    return localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
   }
 
   createRefreshToken(): Observable<any> {

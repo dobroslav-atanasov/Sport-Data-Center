@@ -1,4 +1,4 @@
-import { HTTP_INTERCEPTORS, HttpInterceptorFn } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Provider } from '@angular/core';
 import { HttpCoreInterceptor } from './http.interceptor';
 

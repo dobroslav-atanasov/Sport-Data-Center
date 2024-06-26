@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { AuthService } from '../../features/auth/services/auth.service';
@@ -15,7 +15,7 @@ export class HttpCoreInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     req = this.setApiUrl(req);
     req = this.setHeaders(req);
-
+    
     return next.handle(req)
       .pipe(catchError((error) => {
         if (error instanceof HttpErrorResponse) {

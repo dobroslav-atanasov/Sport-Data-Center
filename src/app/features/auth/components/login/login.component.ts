@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { UserSignIn } from '../../interfaces/user-sign-in';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NotificaitonsService } from '../../../../shared/services/notificaitons.service';
 
 @Component({
   selector: 'sh-login',
@@ -13,7 +15,12 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   serverError: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private notificationsService: NotificaitonsService
+  ) {
     this.serverError = '';
   }
 
@@ -37,6 +44,18 @@ export class LoginComponent implements OnInit {
   }
 
   signInHandler() {
-    this.authService.signIn(this.loginForm.value as UserSignIn)
+    this.authService
+      .signIn(this.loginForm.value)
+      .subscribe({
+        next: () => {
+          const backUrl = this.route.snapshot.queryParams['returnUrl'] || '';
+          this.router.navigate([backUrl])
+        },
+        error: (err) => {
+          this.loginForm.reset();
+          this.serverError = err.error.message;
+          this.notificationsService.showError(err.error.message);
+        }
+      })
   }
 }
