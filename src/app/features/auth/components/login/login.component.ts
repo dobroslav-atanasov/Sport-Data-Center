@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserSignIn } from '../../interfaces/user-sign-in';
 
 @Component({
-  selector: 'sd-login',
+  selector: 'sh-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

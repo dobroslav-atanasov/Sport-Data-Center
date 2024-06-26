@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'sd-header',
+  selector: 'sh-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

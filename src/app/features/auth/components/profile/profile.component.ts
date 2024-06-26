@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'sd-profile',
+  selector: 'sh-profile',
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })

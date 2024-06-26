@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sport-data-center": {
+    "sport-hub": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -18,12 +18,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "sd",
+      "prefix": "sh",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/sport-data-center",
+            "outputPath": "dist/sport-hub",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sport-data-center:build:production"
+              "buildTarget": "sport-hub:build:production"
             },
             "development": {
-              "buildTarget": "sport-data-center:build:development"
+              "buildTarget": "sport-hub:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "sport-data-center:build"
+            "buildTarget": "sport-hub:build"
           }
         },
         "test": {

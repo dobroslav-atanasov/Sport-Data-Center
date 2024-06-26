@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { UserSignUp } from '../../interfaces/user-sign-up';
 
 @Component({
-  selector: 'sd-register',
+  selector: 'sh-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
