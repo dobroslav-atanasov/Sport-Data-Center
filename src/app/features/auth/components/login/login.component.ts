@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { UserSignIn } from '../../interfaces/user-sign-in';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotificaitonsService } from '../../../../shared/services/notificaitons.service';
 

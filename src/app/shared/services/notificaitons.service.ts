@@ -21,6 +21,6 @@ export class NotificaitonsService {
   }
 
   showError(message: string) {
-    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
+    this.messageService.add({ severity: 'danger', summary: 'Error', detail: message });
   }
 }

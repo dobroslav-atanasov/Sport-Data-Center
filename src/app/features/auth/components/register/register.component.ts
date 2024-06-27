@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validators';
 import { AuthService } from '../../services/auth.service';
-import { UserSignUp } from '../../interfaces/user-sign-up';
+import { NotificaitonsService } from '../../../../shared/services/notificaitons.service';
 
 @Component({
   selector: 'sh-register',
@@ -15,7 +15,11 @@ export class RegisterComponent {
   registerForm: FormGroup;
   serverError: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) {
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private notificationsService: NotificaitonsService
+  ) {
     this.serverError = '';
     this.registerForm = this.formBuilder.group({
       username: ['', [Validators.required]],
@@ -42,6 +46,17 @@ export class RegisterComponent {
   }
 
   signUpHandler() {
-    this.authService.signUp(this.registerForm.value as UserSignUp);
+    this.authService
+      .signUp(this.registerForm.value)
+      .subscribe({
+        next: (res) => {
+          this.notificationsService.showSuccess(res.message);
+          this.router.navigate(['/auth/login']);
+        },
+        error: (err) => {
+          this.serverError = err.error.message;
+          this.notificationsService.showError(err.error.message);
+        }
+      })
   }
 }
