@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 @Injectable({
   providedIn: 'root'
 })
-export class NotificaitonsService {
+export class NotificationsService {
 
   constructor(private messageService: MessageService) { }
 
@@ -21,6 +21,6 @@ export class NotificaitonsService {
   }
 
   showError(message: string) {
-    this.messageService.add({ severity: 'danger', summary: 'Error', detail: message });
+    this.messageService.add({ severity: 'error', summary: 'Error', detail: message });
   }
 }
