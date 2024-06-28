@@ -17,7 +17,8 @@
                     placeholder="Password" styleClass="p-password" formControlName="password" [style]="{'width':'100%'}"
                     [inputStyle]="{'width':'100%'}" [feedback]="false"></p-password>
                 <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
-                    <p-message *ngIf="password.errors?.['required']" severity="danger" text="Password is required"></p-message>
+                    <p-message *ngIf="password.errors?.['required']" severity="danger"
+                        text="Password is required"></p-message>
                 </small>
             </div>
 

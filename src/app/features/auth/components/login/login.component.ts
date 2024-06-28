@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificaitonsService } from '../../../../shared/services/notificaitons.service';
+import { NotificationsService } from '../../../../shared/services/notifications.service';
 
 @Component({
   selector: 'sh-login',
@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private notificationsService: NotificaitonsService
+    private notificationsService: NotificationsService,
   ) {
     this.serverError = '';
   }

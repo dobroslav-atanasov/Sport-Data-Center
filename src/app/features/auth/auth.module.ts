@@ -14,8 +14,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password'
 import { MessageService } from 'primeng/api';
-import { MessageModule} from 'primeng/message';
-import { MessagesModule} from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 
 
 @NgModule({

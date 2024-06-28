@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { passwordLowerCaseValidator, passwordMatchValidator, passwordNonAlphanumericValidator, passwordUpperCaseValidator } from '../../../../shared/validators/validators';
 import { AuthService } from '../../services/auth.service';
-import { NotificaitonsService } from '../../../../shared/services/notificaitons.service';
+import { NotificationsService } from '../../../../shared/services/notifications.service';
 
 @Component({
   selector: 'sh-register',
@@ -18,7 +18,7 @@ export class RegisterComponent {
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private notificationsService: NotificaitonsService
+    private notificationsService: NotificationsService
   ) {
     this.serverError = '';
     this.registerForm = this.formBuilder.group({
