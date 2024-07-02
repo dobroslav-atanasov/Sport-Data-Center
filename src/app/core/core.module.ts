@@ -22,7 +22,7 @@ import { CoreInterceptorProviders } from './interceptors/core.interceptor';
     BrowserModule,
     BrowserAnimationsModule,
     MenubarModule,
-    ButtonModule
+    ButtonModule,
   ],
   exports: [
     HeaderComponent,
