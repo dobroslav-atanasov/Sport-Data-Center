@@ -18,7 +18,7 @@ export class AuthService {
   private jwtService = new JwtHelperService();
 
   constructor(private httpClient: HttpClient) {
-
+    this.user = this.setUser();
   }
 
   signUp(model: UserSignUp): Observable<any> {
@@ -54,7 +54,6 @@ export class AuthService {
   signOut() {
     localStorage.removeItem(GlobalConstants.ACCESS_TOKEN);
     localStorage.removeItem(GlobalConstants.REFRESH_TOKEN);
-    localStorage.removeItem(GlobalConstants.USERNAME);
     this.user = undefined;
   }
 
@@ -96,15 +95,13 @@ export class AuthService {
   private tokensExist() {
     const accessToken = localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
     const refreshToken = localStorage.getItem(GlobalConstants.REFRESH_TOKEN);
-    const username = localStorage.getItem(GlobalConstants.USERNAME);
 
-    return accessToken && refreshToken && username;
+    return accessToken && refreshToken;
   }
 
   private saveTokens(token: Token) {
     localStorage.setItem(GlobalConstants.ACCESS_TOKEN, token.accessToken);
     localStorage.setItem(GlobalConstants.REFRESH_TOKEN, token.refreshToken);
-    localStorage.setItem(GlobalConstants.USERNAME, token.username);
 
     this.user = this.setUser();
   }
