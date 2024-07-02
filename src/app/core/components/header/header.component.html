@@ -1,5 +1,15 @@
-<div class="header">
-    <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" routerLink="/"/>
+<div *ngIf="!isLoggedIn" class="header">
+    <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" routerLink="/" />
     <p-button class="header-right" label="Sign In" icon="pi pi-sign-in" routerLink="/auth/login"></p-button>
     <p-button class="header-right" label="Sign Up" icon="pi pi-user-plus" routerLink="/auth/register"></p-button>
+
 </div>
+
+<p-menubar *ngIf="isLoggedIn" [model]="items">
+    <ng-template pTemplate="start">
+        <img src="https://primefaces.org/cdn/primeng/images/primeng.svg" height="40" class="mr-2" />
+    </ng-template>
+
+    <ng-template pTemplate="end" style="padding-left: 50px;">
+    </ng-template>
+</p-menubar>
