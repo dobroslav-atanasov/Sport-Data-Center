@@ -75,6 +75,8 @@ export class AuthService {
     return this.httpClient.post(ApiRouteConstants.TOKENS_CREATE_REFRESH_TOKEN, model);
   }
 
+  
+
   saveAccessToken(accessToken: string) {
     localStorage.setItem(GlobalConstants.ACCESS_TOKEN, accessToken);
   }
@@ -96,7 +98,7 @@ export class AuthService {
     const accessToken = localStorage.getItem(GlobalConstants.ACCESS_TOKEN);
     const refreshToken = localStorage.getItem(GlobalConstants.REFRESH_TOKEN);
 
-    return accessToken && refreshToken;
+    return accessToken !== null && refreshToken !== null;
   }
 
   private saveTokens(token: Token) {
