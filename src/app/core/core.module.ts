@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { CoreInterceptorProviders } from './interceptors/core.interceptor';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CoreInterceptorProviders } from './interceptors/core.interceptor';
     BrowserAnimationsModule,
     MenubarModule,
     ButtonModule,
+    InputTextModule
   ],
   exports: [
     HeaderComponent,
