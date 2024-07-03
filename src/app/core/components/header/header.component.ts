@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AuthService } from '../../../features/auth/services/auth.service';
 import { MenuItem } from 'primeng/api';
 
@@ -8,11 +8,22 @@ import { MenuItem } from 'primeng/api';
   styleUrl: './header.component.css'
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
 
   items: MenuItem[] | undefined;
+  username: string | undefined;
 
   constructor(private authService: AuthService) {
+    this.username = authService.getUser()?.username;
+  }
+
+  ngOnChanges(): void {
+    if (this.authService.isTokenExpired()) {
+      console.log(2);
+    }
+    else {
+      console.log(1);
+    }
   }
 
   ngOnInit(): void {
@@ -20,50 +31,11 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {
         label: 'Home',
-        icon: 'pi pi-home'
+        icon: 'pi pi-home',
+        routerLink: '/'
       },
       {
-        label: 'Features',
-        icon: 'pi pi-star'
-      },
-      {
-        label: 'Projects',
-        icon: 'pi pi-search',
-        items: [
-          {
-            label: 'Components',
-            icon: 'pi pi-bolt'
-          },
-          {
-            label: 'Blocks',
-            icon: 'pi pi-server'
-          },
-          {
-            label: 'UI Kit',
-            icon: 'pi pi-pencil'
-          },
-          {
-            label: 'Templates',
-            icon: 'pi pi-palette',
-            items: [
-              {
-                label: 'Apollo',
-                icon: 'pi pi-palette'
-              },
-              {
-                label: 'Ultima',
-                icon: 'pi pi-palette'
-              }
-            ]
-          }
-        ]
-      },
-      {
-        label: 'Contact',
-        icon: 'pi pi-envelope'
-      },
-      {
-        label: this.authService.getUser()?.username,
+        label: this.username,
         icon: 'pi pi-user',
         // style: { 'margin-left': 'auto' },
         items: [
@@ -93,5 +65,4 @@ export class HeaderComponent implements OnInit {
   get isLoggedIn() {
     return this.authService.isLoggedIn();
   }
-
 }
