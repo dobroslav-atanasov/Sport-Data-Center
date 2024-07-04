@@ -35,6 +35,15 @@ export class HeaderComponent implements OnInit, OnChanges {
         routerLink: '/'
       },
       {
+        label: 'Olympic Games',
+        icon: 'pi pi-discord',
+        items: [
+          {
+            label: 'Games',
+          }
+        ]
+      },
+      {
         label: this.username,
         icon: 'pi pi-user',
         // style: { 'margin-left': 'auto' },
