@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit, OnChanges {
         items: [
           {
             label: 'Games',
+            routerLink: 'olympic-games/games'
           }
         ]
       },
