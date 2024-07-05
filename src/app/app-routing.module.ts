@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'olympic-games',
+    loadChildren: () => import('./features/olympic-games/olympic-games.module').then(m => m.OlympicGamesModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }
