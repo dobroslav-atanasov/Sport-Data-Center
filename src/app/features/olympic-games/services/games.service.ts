@@ -15,4 +15,8 @@ export class GamesService {
   getGamesList(): Observable<any> {
     return this.httpClient.get(ApiRouteConstants.OLYMPIC_GAMES_GAMES_ALL);
   }
+
+  getGameById(id: number): Observable<any> {
+    return this.httpClient.get(`${ApiRouteConstants.OLYMPIC_GAMES_GAMES}/${id}`);
+  }
 }
