@@ -1,8 +1,9 @@
+<h1 style="text-align: center;">Olympic Games</h1>
+
 <div class="card">
     <p-table [value]="games" styleClass="p-datatable-gridlines" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
-                <th>Id</th>
                 <th>Year</th>
                 <th>Name</th>
                 <th>Type</th>
@@ -11,7 +12,6 @@
         </ng-template>
         <ng-template pTemplate="body" let-game>
             <tr>
-                <td>{{ game.id }}</td>
                 <td>
                     <a [routerLink]="['/olympic-games/game', game.id]">
                         {{ game.year }}
